@@ -31,4 +31,12 @@ def decoder():
     else:
         print("The given path does not exist. Please run again")
 
+choice = int(input("Would you like to encode[1] or decode[2]\n(enter 1 or 2): "))
+if choice == 1:
+    uploader()
+if choice == 2:
+    decoder()
+else:
+    print("Invalid choice. Please run again")
+
 
