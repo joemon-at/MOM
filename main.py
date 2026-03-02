@@ -1,26 +1,34 @@
 from encode import encode
 from upload import upload
+from decode import decode
 import os
-inp_name = input('enter location of image: ')
-out_name = input('enter name of image\n(file will be saved in S3 using this name): ')
 
-store = encode(inp_name)
-if(store == "Path DNE"):
-    print("Invalid image location. Please run again")
-else:
-    #now a temp file is created, we gotta store its location
-    upload(store,out_name)
+def uploader():
+    inp_name = input('enter location of image: ')
+    out_name = input('enter name of image\n(file will be saved in S3 using this name): ')
 
-try:
+    store = encode(inp_name)
+    if(store == "Path DNE"):
+        print("Invalid image location. Please run again")
+    else:
+        #now a temp file is created, we gotta store its location
+        upload(store,out_name)
 
-    if os.path.exists(store):
-        os.remove(store)
-    
-except PermissionError:
-    print(f"unable to delete temp file as permission denied, please delete manually at {store}")
-except OSError as e:
-    print(f"An error occured: {e}")
+        try:
+
+            if os.path.exists(store):
+                os.remove(store)
+            
+        except PermissionError:
+            print(f"unable to delete temp file as permission denied, please delete manually at {store}")
+        except OSError as e:
+            print(f"An error occured: {e}")
+
+def decoder():
+    inp_name = input('enter location of image: ')
+    if(os.path.exists(inp_name)):
+        decode(inp_name)
+    else:
+        print("The given path does not exist. Please run again")
 
 
-
-#store should be a string, not an image
