@@ -11,3 +11,6 @@ MOM (Mine, Only Mine) uses LSB Steganography in order to encrypt messages (attac
 
 
 Accompanying this software is the decoder, which lets you read the message sent by your comrade.
+
+
+[AWS S3 is used in order to store/retrieve images that have been encrypted]
