@@ -23,6 +23,7 @@ def decode(img_location):
     stop_indicator = "$ALL DONE$"
 
     if stop_indicator in secret_message:
+        print("The message is:\n\n")
         print(secret_message[:secret_message.index(stop_indicator)])
     else:
         print("couldn't find a message")

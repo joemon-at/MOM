@@ -19,6 +19,6 @@ def upload(img_loc, out_name):
     )
 
     response = s3_client.upload_file(img_loc,bucket_name,out_name)
-
-    print(f"upload file response: {response}")
+    if(response != None):
+        print(f"upload file response: {response}")
 
