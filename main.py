@@ -1,6 +1,7 @@
 from encode import encode
 from upload import upload
 from decode import decode
+from download import download
 import os
 
 def uploader():
@@ -24,12 +25,28 @@ def uploader():
         except OSError as e:
             print(f"An error occured: {e}")
 
+
+
 def decoder():
-    inp_name = input('enter location of image: ')
-    if(os.path.exists(inp_name)):
-        decode(inp_name)
+    
+    img_name = input("enter name of image in S3 bucket: ")
+    download(img_name)
+    if(os.path.exists("./temp.png")):
+        decode("./temp.png")
+        try:
+
+            if os.path.exists("./temp.png"):
+                os.remove("./temp.png")
+            
+        except PermissionError:
+            print(f"unable to delete temp file as permission denied, please delete manually at ./temp.png")
+        except OSError as e:
+            print(f"An error occured: {e}")
     else:
         print("The given path does not exist. Please run again")
+
+
+
 
 choice = int(input("Would you like to encode[1] or decode[2]\n(enter 1 or 2): "))
 if choice == 1:
